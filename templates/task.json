@@ -1,0 +1,36 @@
+{
+  "task_id": "{{UUID}}",
+  "created_at": "{{ISO_TIMESTAMP}}",
+  "source": {
+    "channel": "feishu|telegram|webchat",
+    "sender_id": "",
+    "message_id": "",
+    "raw_text": ""
+  },
+  "context": {
+    "materials_refs": [],
+    "discussion_refs": [],
+    "parent_skill": null
+  },
+  "plan": {
+    "steps": [],
+    "estimated_outputs": []
+  },
+  "execution": {
+    "status": "pending|running|completed|failed",
+    "started_at": null,
+    "finished_at": null,
+    "evidence_path": null,
+    "artifacts": []
+  },
+  "acceptance": {
+    "criteria": [],
+    "passed": null,
+    "reviewer": null
+  },
+  "skill_extraction": {
+    "candidate": false,
+    "skill_path": null,
+    "reuse_count": 0
+  }
+}

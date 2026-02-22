@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "defaults": {
+    "security": "deny",
+    "ask": "on-miss",
+    "askFallback": "deny",
+    "autoAllowSkills": false
+  },
+  "agents": {
+    "main": {
+      "security": "allowlist",
+      "ask": "on-miss",
+      "askFallback": "deny",
+      "autoAllowSkills": false,
+      "allowlist": [
+        { "pattern": "/bin/ls" },
+        { "pattern": "/bin/mkdir" },
+        { "pattern": "/bin/mv" },
+        { "pattern": "/bin/cp" },
+        { "pattern": "/bin/rm" },
+        { "pattern": "/usr/bin/node" },
+        { "pattern": "/usr/bin/npm" },
+        { "pattern": "/usr/local/bin/npx" },
+        { "pattern": "/usr/bin/stat" },
+        { "pattern": "/usr/bin/file" },
+        { "pattern": "/usr/bin/curl" },
+        { "pattern": "/usr/bin/wget" },
+        { "pattern": "/usr/bin/python3" },
+        { "pattern": "/usr/bin/git" },
+        { "pattern": "/usr/local/bin/openclaw" }
+      ]
+    }
+  }
+}
