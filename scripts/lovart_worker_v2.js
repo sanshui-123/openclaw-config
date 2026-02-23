@@ -169,45 +169,34 @@ async function processTask(task) {
     
     console.log('[GENERATED] 图片URL:', imageUrl);
     
-    // 截图方式保存图片（避免 fetch 被阻止）
-    console.log('[DOWNLOAD] 开始截图保存...');
+    // 直接使用 Lovart 的 HTTP(S) URL（公网可访问）
+    // 截图保存作为备份
+    console.log('[BACKUP] 截图保存作为备份...');
     
-    // 找到图片元素并截图
     const imgElement = await page.$('img[src*="artifacts/"]');
-    if (!imgElement) {
-      throw new Error('未找到图片元素');
+    if (imgElement) {
+      const outputPath = `${taskDir}/result.png`;
+      fs.mkdirSync(taskDir, { recursive: true });
+      await imgElement.screenshot({ path: outputPath });
+      const stats = fs.statSync(outputPath);
+      console.log('[BACKUP] 备份完成:', stats.size, 'bytes');
     }
-    
-    const outputPath = `${taskDir}/result.png`;
-    fs.mkdirSync(taskDir, { recursive: true });
-    
-    await imgElement.screenshot({ path: outputPath });
-    
-    const stats = fs.statSync(outputPath);
-    let imageMime = 'image/png';
-    
-    // 转为 base64（避免 file:// 协议）
-    const imageBuffer = fs.readFileSync(outputPath);
-    const base64 = imageBuffer.toString('base64');
-    const dataUrl = `data:${imageMime};base64,${base64}`;
-    console.log('[BASE64] 图片编码完成:', base64.substring(0, 50) + '...');
     
     const resultJson = {
       task_id: taskId,
       status: 'success',
       duration_ms: Date.now() - startTime,
-      image_size_bytes: stats.size,
-      image_mime: imageMime,
-      image_urls: [dataUrl],  // 使用 data:// 协议
+      image_size_bytes: 0,  // 使用公网 URL，不需要本地大小
+      image_mime: 'image/png',
+      image_urls: [imageUrl],  // 直接使用 Lovart 的 HTTP(S) URL
       attachments: [],
       error: ''
     };
     
     await updateRecord(task.record_id, {
       status: 'done',
-      image_urls: dataUrl,
-      image_mime: imageMime,
-      image_size_bytes: stats.size,
+      image_urls: imageUrl,  // Lovart 的 HTTP(S) URL
+      image_mime: 'image/png',
       duration_ms: resultJson.duration_ms,
       finished_at: Date.now()
     });
@@ -215,7 +204,7 @@ async function processTask(task) {
     fs.mkdirSync(taskDir, { recursive: true });
     fs.writeFileSync(path.join(taskDir, 'meta.json'), JSON.stringify(resultJson, null, 2));
     
-    console.log(`[TASK] 完成！耗时: ${resultJson.duration_ms}ms, 大小: ${stats.size} bytes`);
+    console.log(`[TASK] 完成！耗时: ${resultJson.duration_ms}ms`);
     console.log('[RESULT]', JSON.stringify(resultJson, null, 2));
     
     await browser.close();
