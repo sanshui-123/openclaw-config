@@ -1,0 +1,321 @@
+{
+  "base_url": "https://www.lovart.ai/zh",
+  "create_url": "https://www.lovart.ai/zh/home",
+  "timeouts": {
+    "navigation_ms": 60000,
+    "login_ms": 900000,
+    "generate_ms": 0,
+    "download_ms": 60000,
+    "result_wait_ms": 0,
+    "generate_start_wait_ms": 10000,
+    "reference_upload_ms": 8000,
+    "generate_button_wait_ms": 30000,
+    "generation_stable_ms": 20000,
+    "gemini_ms": 360000,
+    "zero_image_abort_ms": 300000,
+    "download_stage_ms": 480000,
+    "direct_download_stage_ms": 120000,
+    "progress_log_ms": 120000
+  },
+  "download_dir": "/Users/sanshui/Downloads",
+  "batch_concurrency": 1,
+  "prefer_direct_download": true,
+  "close_existing_canvas_pages": true,
+  "selectors": {
+    "createEntry": [
+      "text=开始创作",
+      "text=开始生成",
+      "text=创建",
+      "text=新建",
+      "a:has-text(\"创建\")",
+      "button:has-text(\"创建\")",
+      "button:has-text(\"开始\")",
+      "text=立即体验"
+    ],
+    "promptInput": [
+      "div[data-testid=\"agent-message-input\"]",
+      "div[role=\"textbox\"][data-testid=\"agent-message-input\"]",
+      "div.z-1.relative.max-h-60.min-h-14.w-full.cursor-text.px-1",
+      "div.z-1.relative.max-h-60.min-h-12.w-full.cursor-text.px-1",
+      "div.cursor-text[role=\"textbox\"]",
+      "div[role=\"textbox\"]",
+      "div[contenteditable=\"true\"]",
+      "textarea[placeholder*=\"提示\"]",
+      "textarea[placeholder*=\"描述\"]",
+      "textarea"
+    ],
+    "promptHistory": [
+      "div.flex.flex-col.gap-6",
+      "div[data-testid=\"agent-chat-list\"]",
+      "div[data-testid=\"agent-message-list\"]",
+      "div[data-testid=\"agent-chat-history\"]",
+      "div[role=\"log\"]"
+    ],
+    "projectNameInput": [
+      "input#LoTextInput",
+      "input[id*=\"TextInput\"]",
+      "input[placeholder*=\"未命名\"]",
+      "input[placeholder*=\"命名\"]",
+      "input[placeholder*=\"未命名项目\"]",
+      "input[placeholder*=\"项目\"]",
+      "input[aria-label*=\"项目\"]"
+    ],
+    "referenceButton": [
+      "text=参考图",
+      "text=参考图片",
+      "text=参考",
+      "button:has-text(\"参考\")",
+      "button:has-text(\"参考图\")",
+      "button:has-text(\"参考图片\")",
+      "text=上传参考图",
+      "text=上传参考图片",
+      "button[data-testid=\"agent-attachment-button\"]",
+      "button.flex.items-center.justify-center.gap-1.box-border.rounded-full[class*=\"border-[0.5px]\"]",
+      "button[class*=\"border-[0.5px]\"][class*=\"rounded-full\"]",
+      "button[class*=\"gap-1\"][class*=\"rounded-full\"][class*=\"border-\"]",
+      "div:has(div[role=\"textbox\"]) button:has(svg)",
+      "div:has(div.cursor-text) button:has(svg)"
+    ],
+    "referenceTab": [
+      "text=参考图",
+      "text=参考图片",
+      "text=参考"
+    ],
+    "referenceFileInput": [
+      "input[type=\"file\"][accept*=\"image\"]",
+      "input[type=\"file\"]"
+    ],
+    "generateButton": [
+      "button.h-8.min-w-8.rounded-full[class*=\"bg-[#2F3640]\"]",
+      "button:has-text(\"生成\")",
+      "button:has-text(\"开始生成\")",
+      "button:has-text(\"立即生成\")",
+      "text=生成",
+      "button[data-testid=\"agent-send-button\"]",
+      "button.h-8.min-w-8.rounded-full",
+      "button[class*=\"bg-[#2F3640]\"][class*=\"rounded-full\"]"
+    ],
+    "doneIndicators": [
+      "text=下载",
+      "text=导出",
+      "text=生成完成",
+      "text=已完成",
+      "text=查看结果",
+      "text=完成！",
+      "text=我已经为你创作",
+      "img[src*=\"/artifacts/agent/\"]",
+      "text=完美！我已经成功为您创作",
+      "text=完美!我已经成功为您创作",
+      "text=漫画全部完成",
+      "text=创作完成总结"
+    ],
+    "cancelIndicators": [
+      "text=生成任务已取消",
+      "text=任务已取消",
+      "text=生成任务取消"
+    ],
+    "continueButton": [
+      "button:has-text(\"继续生成\")",
+      "button:has-text(\"继续创作\")",
+      "button:has-text(\"继续\")"
+    ],
+    "downloadAllButton": [
+      "button:has-text(\"下载全部\")",
+      "button:has-text(\"一键下载\")",
+      "button:has-text(\"导出全部\")",
+      "text=下载全部",
+      "text=导出全部",
+      "button[data-testid=\"download-button\"]",
+      "button[aria-label*=\"下载\"]",
+      "button[aria-label*=\"导出\"]",
+      "button[aria-label*=\"Download\"]",
+      "button[aria-label*=\"Export\"]",
+      "button[title*=\"下载\"]",
+      "button[title*=\"导出\"]",
+      "button[title*=\"Download\"]",
+      "button[title*=\"Export\"]",
+      "button.flex.flex-shrink-0.items-center.justify-center.gap-1.rounded-lg:has(svg)",
+      "button.flex.flex-shrink-0.items-center.justify-center.gap-1.rounded-lg",
+      "button.flex.items-center.justify-center.gap-1.rounded-lg",
+      "button.flex.flex-shrink-0.items-center.justify-center.rounded-lg",
+      "button.flex.items-center.justify-center.rounded-lg"
+    ],
+    "downloadButtons": [
+      "button:has-text(\"下载\")",
+      "a:has-text(\"下载\")",
+      "text=下载",
+      "button[data-testid=\"download-button\"]",
+      "button[aria-label*=\"下载\"]",
+      "button[aria-label*=\"Download\"]",
+      "button[title*=\"下载\"]",
+      "button[title*=\"Download\"]",
+      "button.flex.flex-shrink-0.items-center.justify-center.gap-1.rounded-lg",
+      "button.flex.items-center.justify-center.gap-1.rounded-lg",
+      "button.flex.flex-shrink-0.items-center.justify-center.rounded-lg",
+      "button.flex.items-center.justify-center.rounded-lg"
+    ],
+    "canvasContainer": [
+      "div.konvajs-content",
+      "canvas"
+    ],
+    "resultItems": [
+      ".result-item",
+      ".result-card",
+      ".output-item",
+      ".image-result",
+      ".gallery-item"
+    ],
+    "loginIndicators": [
+      "text=登录",
+      "text=手机号",
+      "text=验证码",
+      "text=安全验证",
+      "text=继续登录",
+      "text=请先登录"
+    ],
+    "guardIndicators": [
+      "text=验证码",
+      "text=安全验证",
+      "text=安全校验",
+      "text=captcha"
+    ],
+    "popupIndicators": [
+      "text=新会员特惠",
+      "text=获取额外积分",
+      "text=放弃免费积分",
+      "text=立即升级"
+    ],
+    "popupClose": [
+      "div[role=\"dialog\"] button:has(svg)",
+      "div[aria-modal=\"true\"] button:has(svg)",
+      "button:has-text(\"×\")",
+      "button[aria-label=\"close\"]",
+      "button[aria-label=\"Close\"]",
+      "button[title=\"关闭\"]",
+      "button[title=\"Close\"]"
+    ],
+    "errorIndicators": [
+      "text=404",
+      "text=页面未找到",
+      "text=Page not found"
+    ],
+    "backHomeButton": [
+      "button:has-text(\"返回首页\")",
+      "a:has-text(\"返回首页\")",
+      "text=返回首页"
+    ],
+    "busyIndicators": [
+      "text=生成中",
+      "text=思考中",
+      "text=正在生成",
+      "text=生成图片中",
+      "text=使用 Nano Banana Pro 生成图片"
+    ],
+    "generationErrorIndicators": [
+      "text=生成中遇到错误",
+      "text=生成失败",
+      "text=生成任务失败",
+      "text=生成出现错误",
+      "text=任务失败",
+      "text=生成中遇到错误/任务已取消"
+    ],
+    "downloadToastNotification": [
+      "text=导出完成",
+      "div.m_3feedf16.mantine-Notification-title",
+      "div[data-mantine-notification=\"true\"]",
+      "div[role=\"status\"]",
+      "div.mantine-Notification-root",
+      "[data-portal=\"true\"][data-mantine-shared-portal-node=\"true\"]"
+    ],
+    "downloadToastClose": [
+      "button:has(svg[data-icon=\"close\"])",
+      "button[aria-label=\"Close\"]",
+      "button.mantine-Notification-close",
+      "div.mantine-Notification-close button"
+    ],
+    "zoomMenuButton": [
+      "button:has-text(\"%\")",
+      "div[role=\"button\"]:has-text(\"%\")",
+      "div:has-text(\"%\")",
+      "button[aria-label*=\"缩放\"]",
+      "button[title*=\"缩放\"]",
+      "button[aria-label*=\"Zoom\"]",
+      "button[title*=\"Zoom\"]"
+    ],
+    "fitToScreenItem": [
+      "text=适合屏幕",
+      "div[class*=\"menu-item\"]:has-text(\"适合屏幕\")",
+      "div.menu-item-undefined:has-text(\"适合屏幕\")",
+      "div[role=\"menuitem\"]:has-text(\"适合屏幕\")",
+      "button:has-text(\"适合屏幕\")",
+      "div:has-text(\"适合屏幕\")"
+    ],
+    "downloadToolbarButton": [
+      "button.flex.flex-shrink-0.items-center.justify-center.gap-1.rounded-lg:has(svg)",
+      "button.flex.flex-shrink-0.items-center.justify-center.gap-1.rounded-lg",
+      "button.flex.items-center.justify-center.gap-1.rounded-lg",
+      "button.flex.flex-shrink-0.items-center.justify-center.rounded-lg",
+      "button.flex.items-center.justify-center.rounded-lg",
+      "button[aria-label*=\"下载\"]",
+      "button[aria-label*=\"导出\"]",
+      "button[aria-label*=\"Download\"]",
+      "button[aria-label*=\"Export\"]",
+      "button[title*=\"下载\"]",
+      "button[title*=\"导出\"]",
+      "button[title*=\"Download\"]",
+      "button[title*=\"Export\"]",
+      "button:has-text(\"下载\")",
+      "button:has-text(\"导出\")"
+    ],
+    "downloadMenuItem": [
+      "text=下载",
+      "text=导出",
+      "text=下载图片",
+      "text=导出图片",
+      "text=下载全部",
+      "text=导出全部",
+      "li:has-text(\"下载\")",
+      "li:has-text(\"导出\")",
+      ".ant-dropdown-menu-item:has-text(\"下载\")",
+      ".ant-dropdown-menu-item:has-text(\"导出\")",
+      "div[role=\"menuitem\"]:has-text(\"下载\")",
+      "div[role=\"menuitem\"]:has-text(\"导出\")"
+    ],
+    "projectNameDisplay": [
+      "text=未命名",
+      "button:has-text(\"未命名\")",
+      "div:has-text(\"未命名\")"
+    ],
+    "zoomOutButton": [
+      "button[aria-label*=\"缩小\"]",
+      "button[aria-label*=\"减小\"]",
+      "button[title*=\"缩小\"]",
+      "button[title*=\"减小\"]",
+      "button[data-testid*=\"zoom-out\"]",
+      "button:has-text(\"−\")",
+      "button:has-text(\"-\")"
+    ]
+  },
+  "browser": {
+    "mode": "cdp",
+    "shared_cdp": true,
+    "keep_open": true,
+    "reuse_page": true,
+    "user_data_dir": ".auth/lovart_chrome",
+    "channel": "chrome",
+    "cdp_url": "http://127.0.0.1:19222",
+    "cdp_auto_start": true,
+    "cdp_executable_path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+  },
+  "bitbrowser": {
+    "enabled": false,
+    "profile_id": "068734c152d34bb58f8251e67e6f4a3d",
+    "api_base": "http://127.0.0.1:54345",
+    "close_on_done": true
+  },
+  "require_full_results": true,
+  "require_download_all": false,
+  "direct_download_concurrency": 1,
+  "direct_download_timeout_ms": 30000,
+  "download_until_expected": true
+}
