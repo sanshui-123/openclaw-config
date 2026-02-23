@@ -186,20 +186,26 @@ async function processTask(task) {
     const stats = fs.statSync(outputPath);
     let imageMime = 'image/png';
     
+    // 转为 base64（避免 file:// 协议）
+    const imageBuffer = fs.readFileSync(outputPath);
+    const base64 = imageBuffer.toString('base64');
+    const dataUrl = `data:${imageMime};base64,${base64}`;
+    console.log('[BASE64] 图片编码完成:', base64.substring(0, 50) + '...');
+    
     const resultJson = {
       task_id: taskId,
       status: 'success',
       duration_ms: Date.now() - startTime,
       image_size_bytes: stats.size,
       image_mime: imageMime,
-      image_urls: [`file://${outputPath}`],
+      image_urls: [dataUrl],  // 使用 data:// 协议
       attachments: [],
       error: ''
     };
     
     await updateRecord(task.record_id, {
       status: 'done',
-      image_urls: `file://${outputPath}`,
+      image_urls: dataUrl,
       image_mime: imageMime,
       image_size_bytes: stats.size,
       duration_ms: resultJson.duration_ms,
