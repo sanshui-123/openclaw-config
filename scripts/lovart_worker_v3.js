@@ -148,15 +148,55 @@ async function processTask(task) {
     await page.waitForTimeout(3000);
     console.log('[INPUT] ✅ 填充完成');
     
-    // 点击生成按钮
-    console.log('[GENERATE] 点击生成按钮...');
-    const button = await page.$('button svg');
-    if (!button) {
-      throw new Error('未找到生成按钮');
+    // 点击生成按钮（精确选择：输入框右侧最右侧的黑色圆形按钮）
+    console.log('[GENERATE] 查找确定按钮...');
+    
+    const submitButton = await page.evaluate(() => {
+      const inputBox = document.querySelector('div[role="textbox"]');
+      if (!inputBox) return null;
+      
+      // 找到输入框的父容器
+      const container = inputBox.closest('div') || inputBox.parentElement;
+      if (!container) return null;
+      
+      // 获取所有按钮
+      const buttons = Array.from(container.querySelectorAll('button'));
+      
+      // 找到输入框右侧的按钮
+      const inputRect = inputBox.getBoundingClientRect();
+      const buttonsToRight = buttons.filter(btn => {
+        const btnRect = btn.getBoundingClientRect();
+        return btnRect.left > inputRect.right;
+      });
+      
+      // 选择最右侧的黑色按钮
+      const rightMostButton = buttonsToRight.reduce((prev, curr) => {
+        const prevRect = prev.getBoundingClientRect();
+        const currRect = curr.getBoundingClientRect();
+        return currRect.left > prevRect.left ? curr : prev;
+      });
+      
+      return rightMostButton ? buttonsToRight.indexOf(rightMostButton) : -1;
+    });
+    
+    if (submitButton === -1) {
+      throw new Error('未找到确定按钮（输入框右侧最右侧的黑色按钮）');
     }
     
-    await button.click({ force: true });
-    console.log('[GENERATE] ✅ 已点击');
+    // 点击最右侧的按钮
+    await page.evaluate((index) => {
+      const inputBox = document.querySelector('div[role="textbox"]');
+      const container = inputBox.closest('div') || inputBox.parentElement;
+      const buttons = Array.from(container.querySelectorAll('button'));
+      const buttonsToRight = buttons.filter(btn => {
+        const btnRect = btn.getBoundingClientRect();
+        const inputRect = inputBox.getBoundingClientRect();
+        return btnRect.left > inputRect.right;
+      });
+      buttonsToRight[index].click();
+    }, submitButton);
+    
+    console.log('[GENERATE] ✅ 已点击确定按钮（输入框右侧最右侧的黑色按钮）');
     
     // 等待 canvas 页面出现
     console.log('[CANVAS] 等待 canvas 页面...');
